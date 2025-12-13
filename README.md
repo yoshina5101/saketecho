@@ -76,6 +76,8 @@ MVP段階では、アプリ内で使用するお酒データは全て「管理�
 ●認証：Devise
 ●DB：PostgreSQL
 ●デプロイ：Render（予定）
+●画像の取り扱い：ActiveStorage
+→お酒データに紐づく画像管理に使用予定
 
 【使用予定ライブラリ】
 ●devise（ユーザー管理）
