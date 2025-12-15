@@ -1,0 +1,10 @@
+<h1>お酒一覧</h1>
+
+<ul>
+  <% @beverages.each do |beverage| %>
+    <li>
+      <%= link_to beverage.name, beverage_path(beverage) %>
+      （<%= beverage.category.name %>）
+    </li>
+  <% end %>
+</ul>
