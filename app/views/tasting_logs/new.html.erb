@@ -1,0 +1,37 @@
+<h1>飲酒記録を作成</h1>
+
+<%= form_with model: @tasting_log do |f| %>
+  <% if @tasting_log.errors.any? %>
+    <ul>
+      <% @tasting_log.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :beverage_id, "お酒" %><br>
+    <%= f.collection_select :beverage_id, Beverage.order(:name), :id, :name, prompt: "選択してください" %>
+  </div>
+
+  <div>
+    <%= f.label :tasted_on, "飲んだ日" %><br>
+    <%= f.date_field :tasted_on %>
+  </div>
+
+  <div>
+    <%= f.label :rating, "評価（1〜5）" %><br>
+    <%= f.number_field :rating, in: 1..5, step: 1 %>
+  </div>
+
+  <div>
+    <%= f.label :comment, "感想" %><br>
+    <%= f.text_area :comment, rows: 5 %>
+  </div>
+
+  <div>
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
+
+<p><%= link_to "一覧に戻る", tasting_logs_path %></p>

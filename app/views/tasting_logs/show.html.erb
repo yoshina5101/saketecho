@@ -1,0 +1,20 @@
+<h1>飲酒記録</h1>
+
+<p><strong>お酒：</strong><%= @tasting_log.beverage.name %></p>
+
+<% if @tasting_log.tasted_on.present? %>
+  <p><strong>飲んだ日：</strong><%= @tasting_log.tasted_on %></p>
+<% end %>
+
+<% if @tasting_log.rating.present? %>
+  <p><strong>評価：</strong>★<%= @tasting_log.rating %></p>
+<% end %>
+
+<% if @tasting_log.comment.present? %>
+  <p><strong>感想：</strong><br><%= simple_format(@tasting_log.comment) %></p>
+<% end %>
+
+<p>
+  <%= link_to "一覧に戻る", tasting_logs_path %> |
+  <%= link_to "削除", tasting_log_path(@tasting_log), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %>
+</p>
