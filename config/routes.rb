@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :tasting_logs, only: %i[index new create show destroy]
+  resources :favorites, only: %i[index]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
