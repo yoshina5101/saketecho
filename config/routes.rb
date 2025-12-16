@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  resources :beverages, only: %i[index show]
+  resources :beverages, only: %i[index show] do
+    resource :favorite, only: %i[create]
+  end
+
   resources :tasting_logs, only: %i[index new create show destroy]
 
   get "up" => "rails/health#show", as: :rails_health_check
