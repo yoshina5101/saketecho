@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   resources :beverages, only: %i[index show] do
-    resource :favorite, only: %i[create]
+    resource :favorite, only: %i[create destroy]
   end
 
   resources :tasting_logs, only: %i[index new create show destroy]

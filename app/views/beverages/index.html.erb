@@ -7,10 +7,17 @@
       （<%= beverage.category.name %>）
 
       <% if user_signed_in? %>
-        <%= button_to "お気に入り",
-                      beverage_favorite_path(beverage),
-                      method: :post,
-                      class: "btn btn-outline-primary btn-sm" %>
+        <% if current_user.favorites.exists?(beverage: beverage) %>
+          <%= button_to "お気に入り解除",
+                        beverage_favorite_path(beverage),
+                        method: :delete,
+                        class: "btn btn-outline-danger btn-sm" %>
+        <% else %>
+          <%= button_to "お気に入り",
+                        beverage_favorite_path(beverage),
+                        method: :post,
+                        class: "btn btn-outline-primary btn-sm" %>
+        <% end %>
       <% end %>
     </li>
   <% end %>

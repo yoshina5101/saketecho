@@ -5,8 +5,12 @@ class FavoritesController < ApplicationController
   def create
     current_user.favorites.find_or_create_by!(beverage: @beverage)
     redirect_back fallback_location: beverages_path, notice: "お気に入りに追加しました"
-  rescue ActiveRecord::RecordInvalid
-    redirect_back fallback_location: beverages_path, alert: "お気に入りに追加できませんでした"
+  end
+
+  def destroy
+    favorite = current_user.favorites.find_by(beverage: @beverage)
+    favorite&.destroy
+    redirect_back fallback_location: beverages_path, notice: "お気に入りを解除しました"
   end
 
   private
