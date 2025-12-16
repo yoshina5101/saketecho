@@ -1,23 +1,40 @@
-<header>
-  <nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
-    <%= link_to t("app.name"), root_path %>
+<body>
+  <header style="position: relative; z-index: 10;">
+    <nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
+      <%= link_to t("app.name"), root_path %>
 
-    <% if user_signed_in? %>
-      <%= link_to t("nav.beverages"), beverages_path %>
-      <%= link_to t("nav.tasting_logs"), tasting_logs_path %>
-      <%= link_to t("nav.new_tasting_log"), new_tasting_log_path %>
+      <% if user_signed_in? %>
+        <%= link_to t("nav.beverages"), beverages_path %>
+        <%= link_to t("nav.tasting_logs"), tasting_logs_path %>
+        <%= link_to t("nav.new_tasting_log"), new_tasting_log_path %>
 
-      <span style="margin-left:auto;">
-        <%= link_to t("nav.logout"),
-                    destroy_user_session_path,
-                    data: { turbo_method: :delete } %>
-      </span>
-    <% else %>
-      <span style="margin-left:auto;">
-        <%= link_to t("nav.login"), new_user_session_path %>
-        <%= link_to t("nav.signup"), new_user_registration_path %>
-      </span>
-    <% end %>
-  </nav>
-</header>
+        <span style="margin-left:auto;">
+          <%= link_to t("nav.logout"),
+                      destroy_user_session_path,
+                      data: { turbo_method: :delete } %>
+        </span>
+      <% else %>
+        <span style="margin-left:auto;">
+          <%= link_to t("nav.login"), new_user_session_path %>
+          <%= link_to t("nav.signup"), new_user_registration_path %>
+        </span>
+      <% end %>
+    </nav>
+  </header>
 
+  <% if notice.present? %>
+    <div style="padding:10px; margin:10px 12px; border:1px solid #9ad29a; background:#eaffea;">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert.present? %>
+    <div style="padding:10px; margin:10px 12px; border:1px solid #e0a3a3; background:#ffecec;">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <main style="padding: 12px;">
+    <%= yield %>
+  </main>
+</body>
