@@ -1,0 +1,25 @@
+ja:
+  app:
+    name: "sake手帳"
+    short_name: "sake手帳"
+    tagline: "今日飲んだお酒を、気軽に記録できるテイスティングログ。"
+
+  nav:
+    beverages: "お酒一覧"
+    tasting_logs: "飲酒記録"
+    new_tasting_log: "記録する"
+    login: "ログイン"
+    signup: "新規登録"
+    logout: "ログアウト"
+
+  pages:
+    home:
+      cta:
+        record: "飲酒記録をつける"
+        browse: "お酒一覧を見る"
+        login_to_start: "ログインして始めましょう"
+  
+  flash:
+    created: "作成しました"
+    updated: "更新しました"
+    deleted: "削除しました"

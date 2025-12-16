@@ -13,7 +13,7 @@ class TastingLogsController < ApplicationController
   def create
     @tasting_log = current_user.tasting_logs.new(tasting_log_params)
     if @tasting_log.save
-      redirect_to @tasting_log, notice: "記録を作成しました"
+      redirect_to tasting_logs_path, notice: t("flash.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -23,7 +23,7 @@ class TastingLogsController < ApplicationController
 
   def destroy
     @tasting_log.destroy!
-    redirect_to tasting_logs_path, notice: "記録を削除しました"
+    redirect_to tasting_logs_path, notice: t("flash.deleted")
   end
 
   private

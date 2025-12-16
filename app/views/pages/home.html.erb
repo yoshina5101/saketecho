@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1><%= t("app.name") %></h1>
+<p><%= t("app.tagline") %></p>
+
+<% if user_signed_in? %>
+  <p>
+    <%= link_to t("pages.home.cta.record"), new_tasting_log_path %> |
+    <%= link_to t("pages.home.cta.browse"), beverages_path %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to t("pages.home.cta.login_to_start"), new_user_session_path %>
+  </p>
+<% end %>

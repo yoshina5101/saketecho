@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<header>
+  <nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
+    <%= link_to t("app.name"), root_path %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+    <% if user_signed_in? %>
+      <%= link_to t("nav.beverages"), beverages_path %>
+      <%= link_to t("nav.tasting_logs"), tasting_logs_path %>
+      <%= link_to t("nav.new_tasting_log"), new_tasting_log_path %>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+      <span style="margin-left:auto;">
+        <%= link_to t("nav.logout"),
+                    destroy_user_session_path,
+                    data: { turbo_method: :delete } %>
+      </span>
+    <% else %>
+      <span style="margin-left:auto;">
+        <%= link_to t("nav.login"), new_user_session_path %>
+        <%= link_to t("nav.signup"), new_user_registration_path %>
+      </span>
+    <% end %>
+  </nav>
+</header>
 
-    <%= yield %>
-  </body>
-</html>
