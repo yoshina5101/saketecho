@@ -1,0 +1,19 @@
+<h1>マイページ</h1>
+
+<p>
+  ログイン中：<strong><%= @user.email %></strong>
+</p>
+
+<hr>
+
+<ul>
+  <li>
+    <%= link_to "飲酒記録一覧", tasting_logs_path %>
+    （<%= @user.tasting_logs.count %>件）
+  </li>
+
+  <li>
+    <%= link_to "お気に入り一覧", favorites_path %>
+    （<%= @user.favorites.count %>件）
+  </li>
+</ul>
