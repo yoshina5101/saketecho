@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get 'tasting_logs/index'
-  get 'tasting_logs/new'
-  get 'tasting_logs/show'
   devise_for :users
 
   root "pages#home"
+  get "mypage", to: "pages#mypage"
 
   resources :beverages, only: %i[index show] do
     resource :favorite, only: %i[create destroy]
