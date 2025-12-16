@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_many :tasting_logs, dependent: :destroy
   has_many :beverages, through: :tasting_logs
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_beverages, through: :favorites, source: :beverage
 
 end

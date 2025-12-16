@@ -5,6 +5,14 @@
     <li>
       <%= link_to beverage.name, beverage_path(beverage) %>
       （<%= beverage.category.name %>）
+
+      <% if user_signed_in? %>
+        <%= button_to "お気に入り",
+                      beverage_favorite_path(beverage),
+                      method: :post,
+                      class: "btn btn-outline-primary btn-sm" %>
+      <% end %>
     </li>
   <% end %>
 </ul>
+
