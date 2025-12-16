@@ -1,6 +1,10 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_beverage
+  before_action :set_beverage, only: %i[create destroy]
+
+  def index
+    @beverages = current_user.favorite_beverages.includes(:category)
+  end
 
   def create
     current_user.favorites.find_or_create_by!(beverage: @beverage)
