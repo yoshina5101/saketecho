@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_12_16_070052) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_16_150453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "beverage_moods", force: :cascade do |t|
+    t.bigint "beverage_id", null: false
+    t.bigint "mood_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beverage_id", "mood_id"], name: "index_beverage_moods_on_beverage_id_and_mood_id", unique: true
+    t.index ["beverage_id"], name: "index_beverage_moods_on_beverage_id"
+    t.index ["mood_id"], name: "index_beverage_moods_on_mood_id"
+  end
 
   create_table "beverages", force: :cascade do |t|
     t.string "name"
@@ -39,6 +49,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_16_070052) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "moods", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasting_logs", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "beverage_id", null: false
@@ -63,6 +79,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_16_070052) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "beverage_moods", "beverages"
+  add_foreign_key "beverage_moods", "moods"
   add_foreign_key "beverages", "categories"
   add_foreign_key "favorites", "beverages"
   add_foreign_key "favorites", "users"
