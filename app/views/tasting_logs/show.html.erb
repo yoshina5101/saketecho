@@ -15,6 +15,10 @@
 <% end %>
 
 <p>
-  <%= link_to "一覧に戻る", tasting_logs_path %> |
-  <%= link_to "削除", tasting_log_path(@tasting_log), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %>
+  <%= link_to t("tasting_logs.back_to_index", default: "一覧に戻る"), tasting_logs_path %> |
+  <%= button_to t("tasting_logs.delete", default: "削除"),
+                tasting_log_path(@tasting_log),
+                method: :delete,
+                data: { turbo_confirm: t("tasting_logs.confirm_delete", default: "削除しますか？") },
+                form: { style: "display:inline" } %>
 </p>
