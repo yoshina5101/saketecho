@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'moods/index'
+  get 'moods/show'
   devise_for :users
 
   root "pages#home"
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :tasting_logs, only: %i[index new create show destroy]
   resources :favorites, only: %i[index]
+  resources :moods, only: %i[index show]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

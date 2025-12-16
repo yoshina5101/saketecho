@@ -5,6 +5,7 @@
 
       <% if user_signed_in? %>
         <%= link_to "マイページ", mypage_path %>
+        <%= link_to "気分で選ぶ", moods_path %>
         <%= link_to t("nav.beverages"), beverages_path %>
         <%= link_to t("nav.tasting_logs"), tasting_logs_path %>
         <%= link_to "お気に入り", favorites_path %>

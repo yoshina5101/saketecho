@@ -1,0 +1,14 @@
+<h1><%= @mood.name %> のおすすめ</h1>
+
+<% if @beverages.any? %>
+  <ul>
+    <% @beverages.each do |beverage| %>
+      <li>
+        <%= link_to beverage.name, beverage_path(beverage) %>
+        （<%= beverage.category.name %>）
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>この気分に紐づくお酒がまだありません。</p>
+<% end %>
