@@ -1,0 +1,7 @@
+<h1>気分で選ぶ</h1>
+
+<ul>
+  <% @moods.each do |mood| %>
+    <li><%= link_to mood.name, mood_path(mood) %></li>
+  <% end %>
+</ul>
