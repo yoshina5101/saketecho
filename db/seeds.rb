@@ -7,31 +7,31 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Category.destroy_all
-Beverage.destroy_all
-Mood.destroy_all
-BeverageMood.destroy_all
+# db/seeds.rb
 
-sake = Category.create!(name: "日本酒")
-beer_category = Category.create!(name: "ビール")
+# --- Categories ---
+sake = Category.find_or_create_by!(name: "日本酒")
+beer_category = Category.find_or_create_by!(name: "ビール")
 
-dassai = Beverage.create!(
-  name: "獺祭 純米大吟醸",
-  description: "華やかな香りとキレのある後味が特徴の日本酒。",
-  category: sake
-)
+# --- Beverages ---
+dassai = Beverage.find_or_create_by!(name: "獺祭 純米大吟醸") do |b|
+  b.description = "華やかな香りとキレのある後味が特徴の日本酒。"
+  b.category = sake
+end
 
-yonayona = Beverage.create!(
-  name: "よなよなエール",
-  description: "柑橘系の香りとコクが楽しめるクラフトビール。",
-  category: beer_category
-)
+yonayona = Beverage.find_or_create_by!(name: "よなよなエール") do |b|
+  b.description = "柑橘系の香りとコクが楽しめるクラフトビール。"
+  b.category = beer_category
+end
 
-# --- moods 作成 ---
+dassai.update!(description: "華やかな香りとキレのある後味が特徴の日本酒。", category: sake)
+yonayona.update!(description: "柑橘系の香りとコクが楽しめるクラフトビール。", category: beer_category)
+
+# --- Moods ---
 %w[リラックス 気分転換 祝い しっぽり].each do |name|
   Mood.find_or_create_by!(name: name)
 end
 
-# --- 紐付け（beverage_moods） ---
+# --- Associations (BeverageMood) ---
 BeverageMood.find_or_create_by!(beverage: yonayona, mood: Mood.find_by!(name: "気分転換"))
 BeverageMood.find_or_create_by!(beverage: dassai, mood: Mood.find_by!(name: "しっぽり"))
