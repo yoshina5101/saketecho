@@ -13,3 +13,293 @@
  *= require_tree .
  *= require_self
  */
+
+ /* === Basic layout === */
+/* === Layout === */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* === Header / Nav === */
+.header {
+  position: relative;
+  z-index: 10;
+  background: #eb9898ff;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.nav__brand {
+  font-weight: 800;
+  text-decoration: none;
+  color: #6a1bb1;
+  padding: 6px 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  text-decoration: none;
+}
+
+.nav__logo {
+  max-height: 100%;
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+/* === Flash === */
+.flash {
+  margin: 12px auto;
+  max-width: 980px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.flash--notice {
+  border-color: #9ad29a;
+  background: #eaffea;
+}
+
+.flash--alert {
+  border-color: #e0a3a3;
+  background: #ffecec;
+}
+
+/* === Cards === */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card {
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  background: #fff;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.card__image {
+  width: 100%;
+  height: 160px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f5f5f5;
+  margin-bottom: 10px;
+}
+
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0 0 4px;
+}
+
+.card__meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.card__actions {
+  margin-top: auto;
+}
+
+/* === Button === */
+.btn {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.nav__button {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 9999px; 
+  text-decoration: none;
+  font-size: 14px;
+  color: #6a1bb1;
+  border: 1px solid #d6c4ee;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.nav__button:hover {
+  background-color: #f4ecfb;
+}
+
+/* 強調ボタン（記録する） */
+.nav__button--primary {
+  background-color: #7b3fe4;
+  color: #fff;
+  border-color: #7b3fe4;
+}
+
+.nav__button--primary:hover {
+  background-color: #6932c8;
+}
+
+/* 危険操作（ログアウト） */
+.nav__button--danger {
+  color: #1d4ed8;
+  border-color: #93c5fd;
+}
+
+.nav__button--danger:hover {
+  background-color: #f9f9faff;
+}
+
+.nav__brand:hover {
+  background: #f5f5f5;
+}
+
+.nav__button.is-active {
+  background-color: #ede9fe;
+  font-weight: bold;
+}
+
+.nav__button--primary.is-active {
+  box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.25);
+}
+
+/* === Mood Cards === */
+.mood-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.mood-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 16px;
+  background: #faf7ff;
+  border: 1px solid #e6dbff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mood-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.mood-card__body {
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.mood-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5b2dbf;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.hero__image img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.hero__actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background: #7b3fe4;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  padding: 10px 16px;
+  border-radius: 9999px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero__image img {
+    max-width: 100%;
+  }
+}
+
+/* =========================
+   Responsive (Mobile)
+========================= */
+@media (max-width: 768px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav__brand {
+    height: 40px;
+  }
+
+  .nav__logo {
+    height: 28px;
+  }
+
+  .nav__left {
+    flex-wrap: wrap; 
+    gap: 8px;
+  }
+
+  .nav__button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .nav__right {
+    width: 100%;        
+    margin-left: 0;
+    justify-content: flex-end;
+    padding-top: 4px;
+  }
+}

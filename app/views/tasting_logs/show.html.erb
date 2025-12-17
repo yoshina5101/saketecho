@@ -1,24 +1,20 @@
-<h1>飲酒記録</h1>
+<h1><%= t("tasting_logs.show.title") %></h1>
 
-<p><strong>お酒：</strong><%= @tasting_log.beverage.name %></p>
+<p>
+  <strong><%= t("tasting_logs.show.beverage") %>：</strong>
+  <%= @tasting_log.beverage.name %>
+</p>
 
 <% if @tasting_log.tasted_on.present? %>
-  <p><strong>飲んだ日：</strong><%= @tasting_log.tasted_on %></p>
-<% end %>
-
-<% if @tasting_log.rating.present? %>
-  <p><strong>評価：</strong>★<%= @tasting_log.rating %></p>
+  <p>
+    <strong><%= t("tasting_logs.show.tasted_on") %>：</strong>
+    <%= l(@tasting_log.tasted_on) %>
+  </p>
 <% end %>
 
 <% if @tasting_log.comment.present? %>
-  <p><strong>感想：</strong><br><%= simple_format(@tasting_log.comment) %></p>
+  <p>
+    <strong><%= t("tasting_logs.show.comment") %>：</strong><br>
+    <%= simple_format(@tasting_log.comment) %>
+  </p>
 <% end %>
-
-<p>
-  <%= link_to t("tasting_logs.back_to_index", default: "一覧に戻る"), tasting_logs_path %> |
-  <%= button_to t("tasting_logs.delete", default: "削除"),
-                tasting_log_path(@tasting_log),
-                method: :delete,
-                data: { turbo_confirm: t("tasting_logs.confirm_delete", default: "削除しますか？") },
-                form: { style: "display:inline" } %>
-</p>
