@@ -1,7 +1,11 @@
-<h1>気分で選ぶ</h1>
+<h1 class="page-title">気分で選ぶ</h1>
 
-<ul>
+<div class="mood-cards">
   <% @moods.each do |mood| %>
-    <li><%= link_to mood.name, mood_path(mood) %></li>
+    <%= link_to mood_path(mood), class: "mood-card" do %>
+      <div class="mood-card__body">
+        <p class="mood-card__title"><%= mood.name %></p>
+      </div>
+    <% end %>
   <% end %>
-</ul>
+</div>

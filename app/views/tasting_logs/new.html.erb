@@ -1,4 +1,4 @@
-<h1>飲酒記録を作成</h1>
+<h1><%= t("tasting_logs.new.title") %></h1>
 
 <%= form_with model: @tasting_log do |f| %>
   <% if @tasting_log.errors.any? %>
@@ -10,28 +10,32 @@
   <% end %>
 
   <div>
-    <%= f.label :beverage_id, "お酒" %><br>
-    <%= f.collection_select :beverage_id, Beverage.order(:name), :id, :name, prompt: "選択してください" %>
+    <%= f.label :beverage_id, t("tasting_logs.form.beverage") %><br>
+    <%= f.collection_select :beverage_id,
+                            Beverage.order(:name),
+                            :id,
+                            :name,
+                            prompt: t("tasting_logs.form.select_prompt") %>
   </div>
 
   <div>
-    <%= f.label :tasted_on, "飲んだ日" %><br>
+    <%= f.label :tasted_on, t("tasting_logs.form.tasted_on") %><br>
     <%= f.date_field :tasted_on %>
   </div>
 
   <div>
-    <%= f.label :rating, "評価（1〜5）" %><br>
+    <%= f.label :rating, t("tasting_logs.form.rating") %><br>
     <%= f.number_field :rating, in: 1..5, step: 1 %>
   </div>
 
   <div>
-    <%= f.label :comment, "感想" %><br>
+    <%= f.label :comment, t("tasting_logs.form.comment") %><br>
     <%= f.text_area :comment, rows: 5 %>
   </div>
 
   <div>
-    <%= f.submit "保存" %>
+    <%= f.submit t("helpers.submit.create", model: t("activerecord.models.tasting_log", default: "飲酒記録")) %>
   </div>
 <% end %>
 
-<p><%= link_to "一覧に戻る", tasting_logs_path %></p>
+<p><%= link_to t("tasting_logs.form.back"), tasting_logs_path %></p>
