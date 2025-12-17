@@ -1,19 +1,20 @@
-<h1>マイページ</h1>
+<h1><%= t("mypage.title") %></h1>
 
 <p>
-  ログイン中：<strong><%= @user.email %></strong>
+  <%= t("mypage.logged_in_as") %>：
+  <strong><%= @user.email %></strong>
 </p>
 
 <hr>
 
 <ul>
   <li>
-    <%= link_to "飲酒記録一覧", tasting_logs_path %>
-    （<%= @user.tasting_logs.count %>件）
+    <%= link_to t("mypage.links.tasting_logs"), tasting_logs_path %>
+    （<%= t("mypage.count", count: @user.tasting_logs.count) %>）
   </li>
 
   <li>
-    <%= link_to "お気に入り一覧", favorites_path %>
-    （<%= @user.favorites.count %>件）
+    <%= link_to t("mypage.links.favorites"), favorites_path %>
+    （<%= t("mypage.count", count: @user.favorites.count) %>）
   </li>
 </ul>

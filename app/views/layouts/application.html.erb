@@ -1,43 +1,78 @@
-<body>
-  <header style="position: relative; z-index: 10;">
-    <nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
-      <%= link_to t("app.name"), root_path %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sake手帳</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <% if user_signed_in? %>
-        <%= link_to "マイページ", mypage_path %>
-        <%= link_to "気分で選ぶ", moods_path %>
-        <%= link_to t("nav.beverages"), beverages_path %>
-        <%= link_to t("nav.tasting_logs"), tasting_logs_path %>
-        <%= link_to "お気に入り", favorites_path %>
-        <%= link_to t("nav.new_tasting_log"), new_tasting_log_path %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-        <span style="margin-left:auto;">
-          <%= link_to t("nav.logout"),
-                      destroy_user_session_path,
-                      data: { turbo_method: :delete } %>
-        </span>
-      <% else %>
-        <span style="margin-left:auto;">
-          <%= link_to t("nav.login"), new_user_session_path %>
-          <%= link_to t("nav.signup"), new_user_registration_path %>
-        </span>
-      <% end %>
-    </nav>
-  </header>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
 
-  <% if notice.present? %>
-    <div style="padding:10px; margin:10px 12px; border:1px solid #9ad29a; background:#eaffea;">
-      <%= notice %>
-    </div>
-  <% end %>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <%= link_to root_path, class: "nav__brand" do %>
+          <%= image_tag "logo.png", alt: "sake手帳", class: "nav__logo" %>
+        <% end %>
 
-  <% if alert.present? %>
-    <div style="padding:10px; margin:10px 12px; border:1px solid #e0a3a3; background:#ffecec;">
-      <%= alert %>
-    </div>
-  <% end %>
 
-  <main style="padding: 12px;">
-    <%= yield %>
-  </main>
-</body>
+        <div class="nav__left">
+          <% if user_signed_in? %>
+            <%= link_to t("nav.mypage"),
+                mypage_path,
+                class: "nav__button #{'is-active' if current_page?(mypage_path)}" %>
+
+            <%= link_to t("nav.moods"),
+                moods_path,
+                class: "nav__button #{'is-active' if current_page?(moods_path)}" %>
+
+            <%= link_to t("nav.beverages"),
+                beverages_path,
+                class: "nav__button #{'is-active' if current_page?(beverages_path)}" %>
+
+            <%= link_to t("nav.tasting_logs"),
+                tasting_logs_path,
+                class: "nav__button #{'is-active' if current_page?(tasting_logs_path)}" %>
+
+            <%= link_to t("nav.favorites"),
+                favorites_path,
+                class: "nav__button #{'is-active' if current_page?(favorites_path)}" %>
+
+            <%= link_to t("nav.new_tasting_log"),
+                new_tasting_log_path,
+                class: "nav__button nav__button--primary #{'is-active' if controller_name == 'tasting_logs'}" %>
+
+          <% end %>
+        </div>
+
+        <div class="nav__right">
+          <% if user_signed_in? %>
+            <%= link_to t("nav.logout"),
+                  destroy_user_session_path,
+                  data: { turbo_method: :delete },
+                  class: "nav__button nav__button--danger" %>
+            <% else %>
+               <%= link_to t("nav.login"), new_user_session_path, class: "nav__button" %>
+               <%= link_to t("nav.signup"), new_user_registration_path, class: "nav__button nav__button--primary" %>
+            <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <% if notice.present? %>
+      <div class="flash flash--notice"><%= notice %></div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div class="flash flash--alert"><%= alert %></div>
+    <% end %>
+
+    <main class="container">
+      <%= yield %>
+    </main>
+  </body>
+</html>
+

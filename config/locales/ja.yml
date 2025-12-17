@@ -5,8 +5,11 @@ ja:
     tagline: "今日飲んだお酒を、気軽に記録できるテイスティングログ。"
 
   nav:
+    mypage: "マイページ"
     beverages: "お酒一覧"
-    tasting_logs: "飲酒記録"
+    moods: "気分で選ぶ"
+    favorites: "お気に入り"
+    tasting_logs: "飲酒記録一覧"
     new_tasting_log: "記録する"
     login: "ログイン"
     signup: "新規登録"
@@ -18,8 +21,102 @@ ja:
         record: "飲酒記録をつける"
         browse: "お酒一覧を見る"
         login_to_start: "ログインして始めましょう"
+      hero_alt: "日本酒と酒器"
+
+  beverages:
+    index:
+      title: "お酒一覧"
+      favorite: "お気に入り"
+      unfavorite: "お気に入り解除"
+    show:
+      category: "カテゴリ"
+      back: "一覧に戻る"
   
+  favorites:
+    index:
+      title: "お気に入り一覧"
+      unfavorite: "お気に入り解除"
+      empty: "お気に入りはまだありません。"
+
+  mypage:
+    title: "マイページ"
+    logged_in_as: "ログイン中"
+    count: "%{count}件"
+    links:
+      tasting_logs: "飲酒記録一覧"
+      favorites: "お気に入り一覧"
+
+  tasting_logs:
+    index:
+      title: "飲酒記録一覧"
+      new: "新しい記録を作る"
+      tasted_on: "%{date}"
+      rating: "★%{rating}"
+    new:
+      title: "飲酒記録を作成"
+    show:
+      title: "飲酒記録"
+      beverage: "お酒"
+      tasted_on: "飲んだ日"
+      rating: "評価"
+      rating_value: "★%{rating}"
+      comment: "感想"
+      back: "一覧に戻る"
+      delete: "削除"
+      confirm_delete: "削除しますか？"
+    form:
+      beverage: "お酒"
+      select_prompt: "選択してください"
+      tasted_on: "飲んだ日"
+      rating: "評価（1〜5）"
+      comment: "感想"
+      back: "一覧に戻る"
+
+  activerecord:
+    models:
+      tasting_log: "飲酒記録"
+
+  helpers:
+    submit:
+      create: "%{model}を保存"
+
   flash:
     created: "作成しました"
     updated: "更新しました"
     deleted: "削除しました"
+  
+  devise:
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+      new:
+        sign_in: "ログイン"
+        email: "メールアドレス"
+        password: "パスワード"
+        remember_me: "ログイン状態を保持する"
+    failure:
+      invalid: "メールアドレスまたはパスワードが違います"
+    registrations:
+      new:
+        sign_up: "新規登録"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        minimum_password_length: "%{count}文字以上"
+    passwords:
+      new:
+        forgot_your_password: "パスワードをお忘れの方はこちら"
+    shared:
+      links:
+        sign_in: "ログイン"
+        sign_up: "新規登録"
+        forgot_your_password: "パスワードをお忘れの方はこちら"
+        didnt_receive_confirmation_instructions: "確認メールが届きませんか？"
+        didnt_receive_unlock_instructions: "ロック解除メールが届きませんか？"
+        sign_in_with_provider: "%{provider}でログイン"
+  
+  errors:
+    messages:
+      not_saved:
+        one: "1件のエラーがあるため保存できませんでした。"
+        other: "%{count}件のエラーがあるため保存できませんでした。"

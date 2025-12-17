@@ -1,17 +1,23 @@
-<h1>飲酒記録一覧</h1>
+<h1><%= t("tasting_logs.index.title") %></h1>
 
-<p><%= link_to "新しい記録を作る", new_tasting_log_path %></p>
+<p>
+  <%= link_to t("tasting_logs.index.new"),
+              new_tasting_log_path %>
+</p>
 
 <ul>
   <% @tasting_logs.each do |log| %>
     <li>
       <%= link_to log.beverage.name, tasting_log_path(log) %>
+
       <% if log.tasted_on.present? %>
-        （<%= log.tasted_on %>）
+        （<%= t("tasting_logs.index.tasted_on", date: log.tasted_on) %>）
       <% end %>
+
       <% if log.rating.present? %>
-        ★<%= log.rating %>
+        <%= t("tasting_logs.index.rating", rating: log.rating) %>
       <% end %>
     </li>
   <% end %>
 </ul>
+
