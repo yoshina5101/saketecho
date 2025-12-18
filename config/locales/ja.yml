@@ -71,6 +71,10 @@ ja:
       rating: "評価（1〜5）"
       comment: "感想"
       back: "一覧に戻る"
+    edit:
+      title: "飲酒記録を編集"
+    flash:
+      updated: "更新しました"
 
   activerecord:
     models:

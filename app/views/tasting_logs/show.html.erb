@@ -18,3 +18,20 @@
     <%= simple_format(@tasting_log.comment) %>
   </p>
 <% end %>
+
+<p>
+  <%= link_to t("tasting_logs.show.back", default: "一覧に戻る"),
+              tasting_logs_path,
+              class: "nav__button" %>
+
+  <%= link_to t("tasting_logs.show.edit", default: "編集する"),
+              edit_tasting_log_path(@tasting_log),
+              class: "nav__button" %>
+
+  <%= button_to t("tasting_logs.show.delete", default: "削除"),
+                tasting_log_path(@tasting_log),
+                method: :delete,
+                data: { turbo_confirm: t("tasting_logs.show.confirm_delete", default: "削除しますか？") },
+                class: "nav__button nav__button--danger",
+                form: { style: "display:inline" } %>
+</p>

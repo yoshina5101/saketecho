@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :favorite, only: %i[create destroy]
   end
 
-  resources :tasting_logs, only: %i[index new create show destroy]
+  resources :tasting_logs, only: %i[index new create show edit update destroy]
   resources :favorites, only: %i[index]
   resources :moods, only: %i[index show]
 
