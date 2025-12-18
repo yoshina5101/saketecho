@@ -1,6 +1,6 @@
 class TastingLogsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tasting_log, only: %i[show destroy]
+  before_action :set_tasting_log, only: %i[show edit update destroy]
 
   def index
     @tasting_logs = current_user.tasting_logs.includes(:beverage).order(created_at: :desc)
@@ -21,6 +21,17 @@ class TastingLogsController < ApplicationController
 
   def show; end
 
+  def edit; end
+
+  def update
+    if @tasting_log.update(tasting_log_params)
+      redirect_to @tasting_log, notice: "飲酒記録を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   def destroy
     @tasting_log.destroy!
     redirect_to tasting_logs_path, notice: t("flash.deleted")
@@ -29,7 +40,7 @@ class TastingLogsController < ApplicationController
   private
 
   def set_tasting_log
-    @tasting_log = current_user.tasting_logs.find(params[:id]) # 他人の記録は見れない
+    @tasting_log = current_user.tasting_logs.find(params[:id]) 
   end
 
   def tasting_log_params

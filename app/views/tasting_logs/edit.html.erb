@@ -1,0 +1,41 @@
+<h1><%= t("tasting_logs.edit.title", default: "飲酒記録を編集") %></h1>
+
+<%= form_with model: @tasting_log do |f| %>
+  <% if @tasting_log.errors.any? %>
+    <ul>
+      <% @tasting_log.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :beverage_id, t("tasting_logs.form.beverage") %><br>
+    <%= f.collection_select :beverage_id,
+                            Beverage.order(:name),
+                            :id,
+                            :name,
+                            prompt: t("tasting_logs.form.select_prompt") %>
+  </div>
+
+  <div>
+    <%= f.label :tasted_on, t("tasting_logs.form.tasted_on") %><br>
+    <%= f.date_field :tasted_on %>
+  </div>
+
+  <div>
+    <%= f.label :rating, t("tasting_logs.form.rating") %><br>
+    <%= f.number_field :rating, in: 1..5, step: 1 %>
+  </div>
+
+  <div>
+    <%= f.label :comment, t("tasting_logs.form.comment") %><br>
+    <%= f.text_area :comment, rows: 5 %>
+  </div>
+
+  <div>
+    <%= f.submit t("tasting_logs.form.save", default: "保存") %>
+  </div>
+<% end %>
+
+<p><%= link_to t("tasting_logs.form.back", default: "一覧に戻る"), tasting_logs_path %></p>
